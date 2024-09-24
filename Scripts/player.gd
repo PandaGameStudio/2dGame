@@ -3,6 +3,10 @@ extends CharacterBody2D
 @export var speed = 200
 @export var friction = 0.1
 @export var acceleration = 0.1
+@onready var animationTree : AnimationTree = $AnimationTree
+@onready var animationPlayer = $AnimationPlayer
+
+
 
 func get_input():
 	var input = Vector2()

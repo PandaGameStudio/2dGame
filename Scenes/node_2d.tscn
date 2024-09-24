@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4k3n5hgim820"]
+[gd_scene load_steps=5 format=4 uid="uid://d4k3n5hgim820"]
 
 [ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://Scenes/player.tscn" id="1_53yxd"]
 [ext_resource type="Texture2D" uid="uid://cef6u6uf35s4i" path="res://Art/topDown_baseTiles.png" id="2_lribt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4ol4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydeyv"]
 texture = ExtResource("2_lribt")
 0:0/0 = 0
 1:0/0 = 0
@@ -618,11 +618,8 @@ texture = ExtResource("2_lribt")
 3:55/0 = 0
 4:55/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_43qof"]
-sources/0 = SubResource("TileSetAtlasSource_l4ol4")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_llotf"]
-size = Vector2(36, 28)
+[sub_resource type="TileSet" id="TileSet_fqaa8"]
+sources/0 = SubResource("TileSetAtlasSource_ydeyv")
 
 [node name="Node2D" type="Node2D"]
 z_as_relative = false
@@ -631,16 +628,6 @@ y_sort_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_53yxd")]
 position = Vector2(32, -18)
 
-[node name="TileMap" type="TileMap" parent="."]
-y_sort_enabled = true
-tile_set = SubResource("TileSet_43qof")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-262148, 0, 20, -196612, 0, 21, -131076, 0, 22, -65540, 0, 23, -262147, 65536, 20, -196611, 65536, 21, -131075, 65536, 22, -65539, 65536, 23, -262146, 131072, 20, -196610, 131072, 21, -131074, 131072, 22, -65538, 131072, 23, -327676, 0, 20, -262140, 0, 21, -196604, 0, 22, -131068, 0, 23, -327675, 65536, 20, -262139, 65536, 21, -196603, 65536, 22, -131067, 65536, 23, -327674, 131072, 20, -262138, 131072, 21, -196602, 131072, 22, -131066, 131072, 23)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-40, -31)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_llotf")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD9//z/AAAAABgAAAD9//3/AAAAABkAAAD9//7/AAAAABoAAAD9////AAAAABsAAAD+//z/AAABABgAAAD+//3/AAABABkAAAD+//7/AAABABoAAAD+////AAABABsAAAD///z/AAACABgAAAD///3/AAACABkAAAD///7/AAACABoAAAD/////AAACABsAAAA=")
+tile_set = SubResource("TileSet_fqaa8")

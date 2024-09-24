@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://esf32cgyp7nx"]
+[gd_scene load_steps=28 format=3 uid="uid://esf32cgyp7nx"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_k5tx7"]
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_pv4i0"]
 [ext_resource type="Texture2D" uid="uid://bq1pr7mj68efk" path="res://Art/spr_alex.png" id="2_tigs3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75dy0"]
@@ -174,10 +174,71 @@ _data = {
 "Walk_Up": SubResource("Animation_bxja4")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckqqh"]
+animation = &"Idle_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i826a"]
+animation = &"Idle_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxk2e"]
+animation = &"Idle_Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ne4f8"]
+animation = &"Idle_Up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5p5xp"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ckqqh")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_i826a")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_lxk2e")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ne4f8")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jg248"]
+animation = &"Walk_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke712"]
+animation = &"Walk_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vg083"]
+animation = &"Walk_Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4te8"]
+animation = &"Walk_Up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5hf0g"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_jg248")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ke712")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_vg083")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_p4te8")
+blend_point_3/pos = Vector2(0, -0.9)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3hwwx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u55uy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dvw4d"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xdrvd"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_5p5xp")
+states/Idle/position = Vector2(364, 100)
+states/Start/position = Vector2(199, 100)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_5hf0g")
+states/Walk/position = Vector2(733, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3hwwx"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_u55uy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_dvw4d")]
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(0, -10)
-script = ExtResource("1_k5tx7")
+script = ExtResource("1_pv4i0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tigs3")
@@ -193,8 +254,11 @@ libraries = {
 "": SubResource("AnimationLibrary_wphga")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-anim_player = NodePath("../AnimationPlayer")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_xdrvd")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(-0.00420523, 0)
+parameters/Walk/blend_position = Vector2(0.13709, -0.0744681)
