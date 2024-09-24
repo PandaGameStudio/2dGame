@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq1pr7mj68efk"
-path="res://.godot/imported/spr_alex.png-6368c33b1448695c07aff628b778d598.ctex"
+uid="uid://cef6u6uf35s4i"
+path="res://.godot/imported/topDown_baseTiles.png-fe8a30f8feb523861eb1b6f0c0bc3427.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spr_alex.png"
-dest_files=["res://.godot/imported/spr_alex.png-6368c33b1448695c07aff628b778d598.ctex"]
+source_file="res://Art/topDown_baseTiles.png"
+dest_files=["res://.godot/imported/topDown_baseTiles.png-fe8a30f8feb523861eb1b6f0c0bc3427.ctex"]
 
 [params]
 

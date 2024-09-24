@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4k3n5hgim820"]
 
-[ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://player.tscn" id="1_uiyw2"]
-[ext_resource type="Texture2D" uid="uid://cef6u6uf35s4i" path="res://topDown_baseTiles.png" id="2_ouoqx"]
+[ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://Scenes/player.tscn" id="1_53yxd"]
+[ext_resource type="Texture2D" uid="uid://cef6u6uf35s4i" path="res://Art/topDown_baseTiles.png" id="2_lribt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4ol4"]
-texture = ExtResource("2_ouoqx")
+texture = ExtResource("2_lribt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -628,7 +628,7 @@ size = Vector2(36, 28)
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_uiyw2")]
+[node name="Player" parent="." instance=ExtResource("1_53yxd")]
 position = Vector2(32, -18)
 
 [node name="TileMap" type="TileMap" parent="."]
