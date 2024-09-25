@@ -1,7 +1,14 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4k3n5hgim820"]
+[gd_scene load_steps=8 format=4 uid="uid://d4k3n5hgim820"]
 
 [ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://Scenes/player.tscn" id="1_53yxd"]
 [ext_resource type="Texture2D" uid="uid://cef6u6uf35s4i" path="res://Art/topDown_baseTiles.png" id="2_lribt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbh74"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_8hky4"]
+tile_data = PackedInt32Array(0, 0, 24, 65536, 0, 25, 131072, 0, 26, 196608, 0, 27, 1, 65536, 24, 65537, 65536, 25, 131073, 65536, 26, 196609, 65536, 27, 2, 131072, 24, 65538, 131072, 25, 131074, 131072, 26, 196610, 131072, 27)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cyi5v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydeyv"]
 texture = ExtResource("2_lribt")
@@ -367,29 +374,56 @@ texture = ExtResource("2_lribt")
 3:23/0 = 0
 4:23/0 = 0
 5:23/0 = 0
+0:24/next_alternative_id = 2
 0:24/0 = 0
+0:24/1 = 1
+1:24/next_alternative_id = 2
 1:24/0 = 0
+1:24/1 = 1
+2:24/next_alternative_id = 2
 2:24/0 = 0
+2:24/1 = 1
 3:24/0 = 0
 4:24/0 = 0
 5:24/0 = 0
 6:24/0 = 0
+0:25/next_alternative_id = 2
 0:25/0 = 0
+0:25/1 = 1
+1:25/next_alternative_id = 2
 1:25/0 = 0
+1:25/1 = 1
+2:25/next_alternative_id = 2
 2:25/0 = 0
+2:25/1 = 1
 3:25/0 = 0
 4:25/0 = 0
 5:25/0 = 0
 6:25/0 = 0
+0:26/next_alternative_id = 2
 0:26/0 = 0
+0:26/1 = 1
+1:26/next_alternative_id = 2
 1:26/0 = 0
+1:26/1 = 1
+2:26/next_alternative_id = 2
 2:26/0 = 0
+2:26/1 = 1
 4:26/0 = 0
 5:26/0 = 0
 6:26/0 = 0
+0:27/next_alternative_id = 2
 0:27/0 = 0
+0:27/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:27/1 = 1
+1:27/next_alternative_id = 2
 1:27/0 = 0
+1:27/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:27/1 = 1
+2:27/next_alternative_id = 2
 2:27/0 = 0
+2:27/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:27/1 = 1
 3:27/0 = 0
 4:27/0 = 0
 5:27/0 = 0
@@ -619,26 +653,43 @@ texture = ExtResource("2_lribt")
 4:55/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fqaa8"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_cyi5v")
 sources/0 = SubResource("TileSetAtlasSource_ydeyv")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbh74"]
+pattern_0 = SubResource("TileMapPattern_8hky4")
 
 [node name="testArea" type="Node2D"]
-z_as_relative = false
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_53yxd")]
+z_as_relative = false
 position = Vector2(32, -18)
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD9//z/AAAAABgAAAD9//3/AAAAABkAAAD9//7/AAAAABoAAAD9////AAAAABsAAAD+//z/AAABABgAAAD+//3/AAABABkAAAD+//7/AAABABoAAAD+////AAABABsAAAD///z/AAACABgAAAD///3/AAACABkAAAD///7/AAACABoAAAD/////AAACABsAAAA=")
-tile_set = SubResource("TileSet_fqaa8")
 
 [node name="hurtBox" type="Area2D" parent="."]
 position = Vector2(16, -61)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
 shape = SubResource("RectangleShape2D_pbh74")
+
+[node name="tileMapContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="tileMapContainer"]
+physics_interpolation_mode = 2
+z_as_relative = false
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD9//z/AAAAABgAAAD9//3/AAAAABkAAAD9//7/AAAAABoAAAD9////AAAAABsAAAD+//z/AAABABgAAAD+//3/AAABABkAAAD+//7/AAABABoAAAD+////AAABABsAAAD///z/AAACABgAAAD///3/AAACABkAAAD///7/AAACABoAAAD/////AAACABsAAAD6/wEAAAAAABgAAAD6/wIAAAAAABkAAAD6/wMAAAAAABoAAAD6/wQAAAAAABsAAAD7/wEAAAABABgAAAD7/wIAAAABABkAAAD7/wMAAAABABoAAAD7/wQAAAABABsAAAD8/wEAAAACABgAAAD8/wIAAAACABkAAAD8/wMAAAACABoAAAD8/wQAAAACABsAAAD9/wEAAAAAABgAAAD9/wIAAAAAABkAAAD9/wMAAAAAABoAAAD9/wQAAAAAABsAAAD+/wEAAAABABgAAAD+/wIAAAABABkAAAD+/wMAAAABABoAAAD+/wQAAAABABsAAAD//wEAAAACABgAAAD//wIAAAACABkAAAD//wMAAAACABoAAAD//wQAAAACABsAAAAAAAEAAAAAABgAAAAAAAIAAAAAABkAAAAAAAMAAAAAABoAAAAAAAQAAAAAABsAAAABAAEAAAABABgAAAABAAIAAAABABkAAAABAAMAAAABABoAAAABAAQAAAABABsAAAACAAEAAAACABgAAAACAAIAAAACABkAAAACAAMAAAACABoAAAACAAQAAAACABsAAAA=")
+tile_set = SubResource("TileSet_fqaa8")
+use_kinematic_bodies = true
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="tileMapContainer"]
+tile_set = SubResource("TileSet_fqaa8")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="tileMapContainer"]
+tile_set = SubResource("TileSet_fqaa8")
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="tileMapContainer"]
+tile_set = SubResource("TileSet_fqaa8")
 
 [connection signal="body_entered" from="hurtBox" to="Player" method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="hurtBox" to="Player" method="_on_hurt_box_body_exited"]
