@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk3gxdgixm37y"]
+[gd_scene load_steps=5 format=3 uid="uid://bk3gxdgixm37y"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_k8tb8"]
 [ext_resource type="Texture2D" uid="uid://c8sbuiflg1tiv" path="res://Art/main_menu_sketch.png" id="2_0ob8c"]
@@ -7,6 +7,9 @@
 font_size = 60
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwvrf"]
+bg_color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [node name="mainMenu" type="Control"]
 layout_mode = 3
@@ -44,7 +47,8 @@ offset_left = -88.0
 offset_top = -168.0
 offset_right = 89.0
 offset_bottom = -116.0
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_jwvrf")
 text = "Start Game"
 
 [node name="TextureRect" type="TextureRect" parent="."]
