@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://d4k3n5hgim820"]
+[gd_scene load_steps=6 format=4 uid="uid://d4k3n5hgim820"]
 
 [ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://Scenes/player.tscn" id="1_53yxd"]
 [ext_resource type="Texture2D" uid="uid://cef6u6uf35s4i" path="res://Art/topDown_baseTiles.png" id="2_lribt"]
@@ -621,7 +621,9 @@ texture = ExtResource("2_lribt")
 [sub_resource type="TileSet" id="TileSet_fqaa8"]
 sources/0 = SubResource("TileSetAtlasSource_ydeyv")
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbh74"]
+
+[node name="testArea" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
 
@@ -631,3 +633,12 @@ position = Vector2(32, -18)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD9//z/AAAAABgAAAD9//3/AAAAABkAAAD9//7/AAAAABoAAAD9////AAAAABsAAAD+//z/AAABABgAAAD+//3/AAABABkAAAD+//7/AAABABoAAAD+////AAABABsAAAD///z/AAACABgAAAD///3/AAACABkAAAD///7/AAACABoAAAD/////AAACABsAAAA=")
 tile_set = SubResource("TileSet_fqaa8")
+
+[node name="hurtBox" type="Area2D" parent="."]
+position = Vector2(16, -61)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+shape = SubResource("RectangleShape2D_pbh74")
+
+[connection signal="body_entered" from="hurtBox" to="Player" method="_on_hurt_box_body_entered"]
+[connection signal="body_exited" from="hurtBox" to="Player" method="_on_hurt_box_body_exited"]

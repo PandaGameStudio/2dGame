@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://esf32cgyp7nx"]
+[gd_scene load_steps=29 format=3 uid="uid://esf32cgyp7nx"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_pv4i0"]
 [ext_resource type="Texture2D" uid="uid://bq1pr7mj68efk" path="res://Art/spr_alex.png" id="2_tigs3"]
@@ -95,6 +95,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_k4xw7"]
 resource_name = "Walk_Down"
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -104,14 +105,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [1, 0, 3, 2]
 }
 
 [sub_resource type="Animation" id="Animation_jp8kt"]
 resource_name = "Walk_Left"
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -121,14 +123,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [5, 4, 7, 6]
 }
 
 [sub_resource type="Animation" id="Animation_m2qq5"]
 resource_name = "Walk_Right"
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -138,14 +141,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [9, 8, 11, 10]
 }
 
 [sub_resource type="Animation" id="Animation_bxja4"]
 resource_name = "Walk_Up"
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -155,10 +159,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 15]
+"values": [13, 12, 15, 14]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wphga"]
@@ -235,6 +239,13 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_5hf0g")
 states/Walk/position = Vector2(733, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3hwwx"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_u55uy"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_dvw4d")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vubf8"]
+bg_color = Color(0.612299, 1.50409e-06, 5.77569e-07, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(0, -10)
@@ -245,7 +256,7 @@ texture = ExtResource("2_tigs3")
 hframes = 4
 vframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="playerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.625)
 shape = SubResource("RectangleShape2D_75dy0")
 
@@ -260,5 +271,21 @@ zoom = Vector2(3, 3)
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_xdrvd")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.00420523, 0)
+parameters/Idle/blend_position = Vector2(-0.000841022, 0.659575)
 parameters/Walk/blend_position = Vector2(0.13709, -0.0744681)
+
+[node name="healthBar" type="ProgressBar" parent="."]
+z_index = 5
+offset_left = -190.0
+offset_top = -101.0
+offset_right = -70.0
+offset_bottom = -93.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_vubf8")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="value_changed" from="healthBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
