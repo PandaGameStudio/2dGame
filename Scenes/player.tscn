@@ -301,6 +301,7 @@ value = 100.0
 show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="healthBar"]
+layout_mode = 0
 offset_left = -12.0
 offset_top = -14.0
 offset_right = 169.0
