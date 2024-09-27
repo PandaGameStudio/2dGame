@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk3gxdgixm37y"]
+[gd_scene load_steps=6 format=3 uid="uid://bk3gxdgixm37y"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_k8tb8"]
 [ext_resource type="Texture2D" uid="uid://qsuwbd7v01cu" path="res://Art/main_menu_still.png" id="2_0aa0n"]
+[ext_resource type="FontFile" uid="uid://barqftys0yh75" path="res://dogicapixel.otf" id="2_hnglv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjodx"]
-font_size = 60
+font = ExtResource("2_hnglv")
+font_size = 64
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -47,7 +49,10 @@ offset_left = -88.0
 offset_top = -168.0
 offset_right = 89.0
 offset_bottom = -116.0
-theme_override_font_sizes/font_size = 23
+theme_override_fonts/font = ExtResource("2_hnglv")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_jwvrf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jwvrf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jwvrf")
 text = "Start Game"
 
