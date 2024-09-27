@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bk3gxdgixm37y"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_k8tb8"]
-[ext_resource type="Texture2D" uid="uid://c8sbuiflg1tiv" path="res://Art/main_menu_sketch.png" id="2_0ob8c"]
+[ext_resource type="Texture2D" uid="uid://qsuwbd7v01cu" path="res://Art/main_menu_still.png" id="2_0aa0n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjodx"]
 font_size = 60
@@ -60,6 +60,6 @@ offset_top = -320.0
 offset_right = 576.0
 offset_bottom = 328.0
 mouse_filter = 2
-texture = ExtResource("2_0ob8c")
+texture = ExtResource("2_0aa0n")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
