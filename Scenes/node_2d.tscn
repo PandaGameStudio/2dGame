@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4k3n5hgim820"]
+[gd_scene load_steps=5 format=4 uid="uid://d4k3n5hgim820"]
 
 [ext_resource type="TileSet" uid="uid://dmswmkgirerjy" path="res://Art/TileSet.tres" id="1_7m6kp"]
 [ext_resource type="PackedScene" uid="uid://esf32cgyp7nx" path="res://Scenes/player.tscn" id="1_53yxd"]
 [ext_resource type="Script" path="res://Scripts/node_2d.gd" id="1_ukvie"]
-[ext_resource type="PackedScene" uid="uid://cm0vcnp5f5fia" path="res://Scenes/pause_menu.tscn" id="3_kwgqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbh74"]
 
@@ -41,14 +40,6 @@ shape = SubResource("RectangleShape2D_pbh74")
 z_as_relative = false
 position = Vector2(32, -18)
 
-[node name="pauseMenu" parent="tileMapContainer/Player" instance=ExtResource("3_kwgqw")]
-visible = false
-z_index = 965
-offset_left = -192.0
-offset_top = -108.0
-offset_right = -192.0
-offset_bottom = -108.0
-
 [node name="TileMapLayer2" type="TileMapLayer" parent="tileMapContainer"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD6//3/AAAAABQAAAAFAPz/AAAAABQAAAD+/wEAAAAAABQAAAA=")
@@ -62,5 +53,3 @@ tile_set = ExtResource("1_7m6kp")
 
 [connection signal="body_entered" from="tileMapContainer/hurtBox" to="tileMapContainer/Player" method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="tileMapContainer/hurtBox" to="tileMapContainer/Player" method="_on_hurt_box_body_exited"]
-
-[editable path="tileMapContainer/Player/pauseMenu"]
