@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck0jxhxrmxnt3"]
+
+[ext_resource type="Script" path="res://canvas_layer.gd" id="1_yxr3o"]
+[ext_resource type="FontFile" uid="uid://barqftys0yh75" path="res://dogicapixel.otf" id="2_qwr63"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_yxr3o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.117647, 0.188235, 0.596078)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qwr63")
+text = "RESUME"
+
+[node name="Exit" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qwr63")
+text = "EXIT"
